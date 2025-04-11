@@ -90,7 +90,7 @@ The `UserDevice` smart contract provides access control system designed to manag
 ![UML_IMAGE](Diagrams/User-Device_UML.png)
 
 #### DeviceDevice Contract
-The DeviceDevice smart contract is designed to manage interactions between IoT devices. In this case, it links a sensor and a fan, enabling the sensor to report temperature data to the blockchain.
+The DeviceDevice smart contract is designed to manage interactions between IoT devices. In this case, it links a sensor and a fan, enabling the sensor to report temperature data to the blockchain. Then the fan fetches the temperature from the blockchain and dynamically changes the fanSpeed according to it. 
 
 ![UML_IMAGE](Diagrams/Device-Device_UML.png)
 
