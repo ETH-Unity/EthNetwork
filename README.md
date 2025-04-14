@@ -2,7 +2,7 @@
 
 This repository contains the blockchain infrastructure and smart contracts enabling interactions between users and IoT devices in a multiplayer environment. It serves as the backend for [UnityNethereum](https://github.com/ETH-Unity/UnityNethereum).
 
----
+
 
 ## Overview
 
@@ -15,7 +15,6 @@ EthNetwork provides:
   - Device-to-Device interactions
 - Deployment instructions and tools
 
----
 
 ## Prerequisites
 
@@ -26,7 +25,7 @@ EthNetwork provides:
 - MetaMask (browser extension)
 - Remix IDE
 
----
+
 
 ## Quorum Testnet Setup
 
@@ -48,7 +47,7 @@ Once running, your local Quorum network exposes:
 - Block Explorer: `http://localhost:25000`
 - BlockScout : `http://localhost:26000` (optional)
 
----
+
 ## Connecting MetaMask to Quorum
 
 ### MetaMask browser extension is required
@@ -65,7 +64,7 @@ Once running, your local Quorum network exposes:
 
  1. Add Account in MetaMask through `Import a wallet or account - private key`
  2. Get test account private keys from: `quorum-test-network\config\nodes\member\accountPrivateKey``
----
+
 ## Setup
 
 ### Remix
@@ -125,7 +124,7 @@ If contracts are modified make sure to obtain the updated ABI file from remix an
 2. Compile the given contract
 3. Copy the ABI JSON from the popup
 
----
+
 ## Smart Contracts
 
 ### Contract Overview
@@ -153,10 +152,10 @@ The DeviceDevice smart contract is designed to manage interactions between IoT d
 
 <img src="https://github.com/ETH-Unity/EthNetwork/blob/main/Diagrams/Device-Device_UML.png" height="400">
 
----
+
 
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
 
----
+
