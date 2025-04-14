@@ -133,7 +133,7 @@ If contracts are modified make sure to obtain the updated ABI file from remix an
 #### UserUser Contract
 The `UserUser` smart contract enables transfers between users in the unity environment. Instead of direct transfers, funds are **held in the contract** as **pending transfers**, which must be **explicitly signed** by the recipient to complete. Additionally a message can be sent within the transaction which gets stored in the contract and gets returned to the recipient when signed.
 
-[UML_IMAGE]
+<img src="https://github.com/ETH-Unity/EthNetwork/blob/main/Diagrams/User-User_UML.png" height="400">
 
 #### UserDevice Contract
 The `UserDevice` smart contract provides access control system designed to manage access control for users interacting with an IoT device. In this case, the device is represented as a "door," which can be either a physical or digital resource. The contract enables an owner and designated admins to assign, modify, or revoke permissions, determining which users can interact with the device and under what conditions.
@@ -146,9 +146,17 @@ The `UserDevice` smart contract provides access control system designed to manag
 | Admin (2)| ✅ | ❌ | ✅ |
 | Owner (Deployer) | ✅ | ✅ | ✅ |
 
-[UML_IMAGE]
+<img src="https://github.com/ETH-Unity/EthNetwork/blob/main/Diagrams/User-Device_UML.png" height="400">
 
 #### DeviceDevice Contract
 The DeviceDevice smart contract is designed to manage interactions between IoT devices. In this case, it links a sensor and a fan, enabling the sensor to report temperature data to the blockchain.
 
-[UML_IMAGE]
+<img src="https://github.com/ETH-Unity/EthNetwork/blob/main/Diagrams/Device-Device_UML.png" height="400">
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+---
