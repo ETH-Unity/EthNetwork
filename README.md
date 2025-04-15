@@ -148,7 +148,7 @@ The `UserDevice` smart contract provides access control system designed to manag
 <img src="https://github.com/ETH-Unity/EthNetwork/blob/main/Diagrams/User-Device_UML.png" height="400">
 
 #### DeviceDevice Contract
-The DeviceDevice smart contract is designed to manage interactions between IoT devices. In this case, it links a sensor and a fan, enabling the sensor to report temperature data to the blockchain.
+The DeviceDevice smart contract is designed to manage interactions between IoT devices. In this case, it links a sensor and a fan, enabling the sensor to report temperature data to the blockchain. Fan fetches the stored temperature from the blockchain and when the temperature is received, it calculates the new fan speed and updates the fan on Unity Client.
 
 <img src="https://github.com/ETH-Unity/EthNetwork/blob/main/Diagrams/Device-Device_UML.png" height="400">
 
