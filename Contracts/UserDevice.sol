@@ -4,13 +4,15 @@ pragma solidity ^0.8.0;
 contract UserDevice {
     // Role definitions
     uint8 constant ROLE_NONE = 0;
-    uint8 constant ROLE_DEFAULT = 1;  // Regular user with standard access
-    uint8 constant ROLE_ADMIN = 2;    // Admin with management privileges
-    
+    uint8 constant ROLE_DEFAULT = 1;
+    uint8 constant ROLE_SERVICE = 2;
+    uint8 constant ROLE_ADMIN = 3;
+
     struct AccessInfo {
         uint8 role;
         bool hasPhysicalAccess;
         bool hasDigitalAccess;
+        bool hasAdminRoomAccess;
         uint256 accessExpiration; // 0 means no expiration
     }
     
@@ -21,8 +23,7 @@ contract UserDevice {
     
     event AccessGranted(address indexed user, uint8 role, bool physical, bool digital);
     event AccessRevoked(address indexed user);
-    event AccessChanged(address indexed user, uint8 role, bool physical, bool digital);
-    event DoorOpened(address indexed user, bool isPhysical);
+    event DoorOpened(address indexed user, uint256 doorId);
     
     modifier onlyOwner() {
         require(msg.sender == owner, "Only owner can perform this action");
@@ -51,8 +52,10 @@ contract UserDevice {
             role: ROLE_ADMIN,
             hasPhysicalAccess: true,
             hasDigitalAccess: true,
+            hasAdminRoomAccess: true,
             accessExpiration: 0
         });
+
         accessArray.push(msg.sender);
     }
     
@@ -61,28 +64,26 @@ contract UserDevice {
         uint8 _role, 
         bool _physical, 
         bool _digital, 
+        bool _adminRoom, 
         uint256 _expiration
     ) public onlyAdmin {
         require(_role > ROLE_NONE && _role <= ROLE_ADMIN, "Invalid role");
-        
-        // Admin can't give admin role (only owner can)
         if (_role == ROLE_ADMIN && msg.sender != owner) {
             revert("Only owner can grant admin role");
         }
-        
-        // If new user, add to array
+
         if (accessList[_user].role == ROLE_NONE) {
             accessArray.push(_user);
         }
-        
-        // Set access info
+
         accessList[_user] = AccessInfo({
             role: _role,
             hasPhysicalAccess: _physical,
             hasDigitalAccess: _digital,
+            hasAdminRoomAccess: _adminRoom,
             accessExpiration: _expiration
         });
-        
+
         emit AccessGranted(_user, _role, _physical, _digital);
     }
     
@@ -125,17 +126,24 @@ contract UserDevice {
                info.role > ROLE_NONE && 
                (info.accessExpiration == 0 || block.timestamp < info.accessExpiration);
     }
-    
-    function openDoor(address _user, bool isPhysical) public onlyDoor {
+
+    function openDoor(address _user, uint256 doorId) public onlyDoor {
         AccessInfo memory info = accessList[_user];
-    
+
+        // You may want to check access based on door type, which you can map off-chain or with another mapping
         require(
             info.role > ROLE_NONE &&
-            (info.accessExpiration == 0 || block.timestamp < info.accessExpiration) &&
-            (isPhysical ? info.hasPhysicalAccess : info.hasDigitalAccess),
+            (info.accessExpiration == 0 || block.timestamp < info.accessExpiration),
             "Access Denied"
         );
+
+        emit DoorOpened(_user, doorId);
+    }
     
-        emit DoorOpened(_user, isPhysical);
+    function canEnterAdminRoom(address _user) public view returns (bool) {
+        AccessInfo memory info = accessList[_user];
+        return info.hasAdminRoomAccess && 
+               info.role > ROLE_NONE &&
+               (info.accessExpiration == 0 || block.timestamp < info.accessExpiration);
     }
 }
