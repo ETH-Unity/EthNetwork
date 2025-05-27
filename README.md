@@ -142,7 +142,8 @@ The `UserDevice` smart contract provides access control system designed to manag
 |:--:|:--:|:--:|:--:|
 | None (0) | ❌ | ❌ | ❌ |
 | Default (1) | ❌ | ❌ | ❓ |
-| Admin (2)| ✅ | ❌ | ✅ |
+| Service (2) | ❌ | ❌ | ✅ |
+| Admin (3)| ✅ | ❌ | ✅ |
 | Owner (Deployer) | ✅ | ✅ | ✅ |
 
 <img src="https://github.com/ETH-Unity/EthNetwork/blob/main/Diagrams/User-Device_UML.png" height="400">
