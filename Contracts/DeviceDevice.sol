@@ -3,12 +3,10 @@ pragma solidity ^0.8.0;
 
 contract DeviceDevice {
     address public sensor;
-    address public fan;
     int256 public temperature;
 
-    constructor(address _sensor, address _fan) {
+    constructor(address _sensor) {
         sensor = _sensor;
-        fan = _fan;
     }
 
     modifier onlySensor() {
