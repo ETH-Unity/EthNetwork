@@ -46,6 +46,7 @@ Once running, your local Quorum network exposes:
 - Block Explorer: `http://localhost:25000`
 - BlockScout : `http://localhost:26000` (optional)
 
+
 ## Connecting MetaMask to Quorum
 
 ### MetaMask browser extension is required
@@ -56,7 +57,7 @@ Once running, your local Quorum network exposes:
 - Network Name: `Quorum`
 - RPC URL: `http://localhost:8545`
 - Chain ID: `1337`
-- Currency Symbol: `ether`
+- Currency Symbol: `eth`
 
 ### Import test accounts using private keys
 
@@ -112,9 +113,7 @@ To connect the Unity environment with the contracts:
 -  **DocumentSigner contract**: Set in `DocumentHashing` (component of `Player Prefab`)
 -  **CertificateNFT contract**: Set in `NFTManager` (Child GameObject of `Player Prefab`)
 
-## Smart Contracts
-
-### Contract Overview
+## Contracts
 
 #### UserUser Contract
 
@@ -164,7 +163,6 @@ The `DocumentSigner` smart contract allows digital signing of documents by hashi
 #### CertificateNFT Contract
 
 The CertificateNFT smart contract provides NFT-based certificate creation and management. Players can deploy ERC-721 contracts and mint NFT certificates with embedded data to specific recipients. This creates verifiable, immutable certificates stored on the blockchain.
-
 
 ## License
 
